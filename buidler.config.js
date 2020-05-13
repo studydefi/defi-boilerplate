@@ -18,4 +18,6 @@ task("test", "Runs tests via Jest", async () => {
   await stop();
 });
 
-module.exports = {};
+module.exports = {
+  defaultNetwork: 'localhost'
+};
