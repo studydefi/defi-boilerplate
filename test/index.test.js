@@ -1,7 +1,13 @@
+/**
+ * @jest-environment node
+ */
+
 require("dotenv").config();
 jest.setTimeout(30000);
 
 const { ethers } = require("ethers");
+
+const bre = require("@nomiclabs/buidler");
 const erc20 = require("@studydefi/money-legos/erc20");
 
 const fromWei = (x, u = 18) => ethers.utils.formatUnits(x, u);
@@ -12,6 +18,7 @@ describe("initial conditions", () => {
   beforeAll(async () => {
     const provider = new ethers.providers.JsonRpcProvider();
     wallet = new ethers.Wallet(process.env.PRIV_KEY_TEST, provider);
+    console.log("bre.ethers", bre.ethers)
   });
 
   test("initial DAI balance of 0", async () => {
