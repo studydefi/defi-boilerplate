@@ -5,20 +5,20 @@
 require("dotenv").config();
 jest.setTimeout(30000);
 
-const bre = require("@nomiclabs/buidler");
+const { ethers } = require("@nomiclabs/buidler");
 const erc20 = require("@studydefi/money-legos/erc20");
 
-const fromWei = (x, u = 18) => bre.ethers.utils.formatUnits(x, u);
+const fromWei = (x, u = 18) => ethers.utils.formatUnits(x, u);
 
 describe("initial conditions", () => {
   let wallet;
 
   beforeAll(async () => {
-    [wallet] = await bre.ethers.getSigners();
+    [wallet] = await ethers.getSigners();
   });
 
   test("initial DAI balance of 0", async () => {
-    const daiContract = new bre.ethers.Contract(
+    const daiContract = new ethers.Contract(
       erc20.dai.address,
       erc20.dai.abi,
       wallet
